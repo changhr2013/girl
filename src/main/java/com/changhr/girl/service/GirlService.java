@@ -1,10 +1,10 @@
-package com.changhr.girl;
+package com.changhr.girl.service;
 
+import com.changhr.girl.repository.GirlRepository;
+import com.changhr.girl.domain.Girl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Created by Tony on 2018/3/2.

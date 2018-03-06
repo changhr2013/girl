@@ -1,5 +1,6 @@
-package com.changhr.girl;
+package com.changhr.girl.repository;
 
+import com.changhr.girl.domain.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

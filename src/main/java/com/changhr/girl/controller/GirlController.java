@@ -1,8 +1,15 @@
-package com.changhr.girl;
+package com.changhr.girl.controller;
 
+import com.changhr.girl.repository.GirlRepository;
+import com.changhr.girl.service.GirlService;
+import com.changhr.girl.domain.Girl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -10,6 +17,8 @@ import java.util.List;
  */
 @RestController
 public class GirlController {
+
+    private final static Logger logger= LoggerFactory.getLogger(GirlController.class);
 
     @Autowired
     private GirlRepository girlRepository;
@@ -23,10 +32,14 @@ public class GirlController {
     }
 
     @PostMapping(value = "/girls")
-    public Girl AddGirl(@RequestParam("cupSize") String cupSize,@RequestParam("age") Integer age){
-        Girl girl=new Girl();
-        girl.setCupSize(cupSize);
-        girl.setAge(age);
+    public Girl AddGirl(@Valid Girl girl, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            logger.error("Error: "+bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+//        girl.setCupSize(girl.getCupSize());
+//        girl.setAge(girl.getAge());
         return girlRepository.save(girl);
     }
 
