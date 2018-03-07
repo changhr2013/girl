@@ -1,4 +1,4 @@
-package com.changhr.girl;
+package com.changhr.girl.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

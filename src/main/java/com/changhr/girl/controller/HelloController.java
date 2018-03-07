@@ -1,5 +1,6 @@
-package com.changhr.girl;
+package com.changhr.girl.controller;
 
+import com.changhr.girl.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
