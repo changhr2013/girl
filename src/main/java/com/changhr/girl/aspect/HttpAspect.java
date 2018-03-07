@@ -25,35 +25,35 @@ public class HttpAspect {
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint){
-
-        logger.info("log: before AOP!");
-
-        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes attributes=(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
         //url
-        logger.info("url = {}",request.getRequestURL());
+        logger.info("url={}",request.getRequestURL());
 
-        //Request Method
-        logger.info("request Method = {}",request.getMethod());
+        //Method
+        logger.info("method={}",request.getMethod());
 
         //ip address
-        logger.info("ip address = {}",request.getRemoteAddr());
+        logger.info("ip address={}",request.getRemoteAddr());
 
         //类方法
-        logger.info("Class Method = {}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        logger.info("class method={}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
 
         //参数
-        logger.info("Arguments = {}",joinPoint.getArgs());
+        logger.info("arguments={}",joinPoint.getArgs());
+
+
+        logger.info("Info: Before Pointcut log Method...");
     }
 
     @After("log()")
     public void doAfter(){
-        logger.info("log: after AOP!");
+        logger.info("Info: After Pointcut log Method...");
     }
 
     @AfterReturning(returning = "object",pointcut = "log()")
-    public void doAfterReturning(Object object){
-        logger.info("response = {}",object.toString());
+    public void doAfterReturning(Object object) {
+        logger.info("response={}", object.toString());
     }
 }

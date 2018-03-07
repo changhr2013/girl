@@ -37,7 +37,7 @@ public class GirlController {
     public Girl AddGirl(@Valid Girl girl, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            System.out.println("Error:"+bindingResult.getFieldError().getDefaultMessage());
+            logger.error("Error: "+bindingResult.getFieldError().getDefaultMessage());
             return null;
         }
 //        girl.setCupSize(girl.getCupSize());
