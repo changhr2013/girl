@@ -1,8 +1,10 @@
 package com.changhr.girl.controller;
 
 import com.changhr.girl.domain.Girl;
+import com.changhr.girl.domain.Result;
 import com.changhr.girl.repository.GirlRepository;
 import com.changhr.girl.service.GirlService;
+import com.changhr.girl.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +36,14 @@ public class GirlController {
     }
 
     @PostMapping(value = "/girls")
-    public Girl AddGirl(@Valid Girl girl, BindingResult bindingResult) {
+    public Result<Girl> AddGirl(@Valid Girl girl, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            logger.error("Error: " + bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.failed(1,bindingResult.getFieldError().getDefaultMessage());
         }
 //        girl.setCupSize(girl.getCupSize());
 //        girl.setAge(girl.getAge());
-        return girlRepository.save(girl);
+        return ResultUtil.success(girl);
     }
 
     @GetMapping("/girls/{id}")
@@ -79,5 +80,11 @@ public class GirlController {
     public List<Girl> insertTwoGirls() {
         girlService.insertTwoGirls();
         return girlRepository.findAll();
+    }
+
+    @GetMapping("girls/getAge/{id}")
+    public String getAge(@PathVariable("id") Integer id){
+
+        return null;
     }
 }

@@ -26,4 +26,14 @@ public class GirlService {
         girlB.setCupSize("B");
         girlRepository.save(girlB);
     }
+
+    public void getAge(Integer id){
+        Girl girl = girlRepository.findOne(id);
+        Integer age = girl.getAge();
+        if(age<10){
+            //上小学
+        }else if(age<15&&age>=10){
+            //上初中
+        }
+    }
 }
